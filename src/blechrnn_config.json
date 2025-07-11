@@ -1,10 +1,10 @@
 {
     "paths": {
-        "underlying_functions": "/home/vincent/Senior thesis work/underlying functions",
-        "ephys_data": "/home/vincent/Senior thesis work/underlying functions/ephys_data",
-        "src": "/home/vincent/Senior thesis work/blechRNN-master/src",
-        "h5_dir": "/home/vincent/Senior thesis work/blechRNN-master/data/nested_h5_files",
-        "output_base_dir": "/home/vincent/Senior thesis work/blechRNN-master/july_25_output"
+        "underlying_functions": "vincent's/path/to/various/things/probably/deprecated",
+        "ephys_data": "path/to/ephys/data/helper",
+        "src": "path/to/src",
+        "h5_dir": "path/to/nested/h5/files",
+        "output_base_dir": "output/of/infrence"
     },
     "parameters": {
         "train_steps": 12000,
