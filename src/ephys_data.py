@@ -121,6 +121,8 @@ class ephys_data():
             firing_rate_array[this_inds] = this_firing
         return firing_rate_array
 
+
+    # Vincent modified method to handle multipe H5 files
     @staticmethod
     def get_hdf5_path(data_dir):
         """
