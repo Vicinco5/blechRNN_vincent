@@ -66,12 +66,13 @@ The model uses an autoencoder architecture with three main components:
   
   ## Directory Structure Assumption:
   The updated script assumes each `.h5` file is stored in its own directory:
-   `` h5_dir/
+   ```
+    h5_dir/
     ├── DatasetA/
     │ └── DatasetA.h5
     ├── DatasetB/
     │ └── DatasetB.h5
-    ``
+   ```
   Only directories containing exactly one `.h5` file are processed. Others are skipped with a warning.
   Nested dirs were enforced to transparently enable serial processing of multiple datasets automatically without making modifications to `ephys_data.py`. 
   
