@@ -1,5 +1,31 @@
 import os
 import shutil
+"""
+this simple script is designed to take a whole bunch of H5 files in a given dir and create copies of them in a 
+new tld, each nested in a sub-dir.
+we go from this dir structure: 
+h5_dir/
+├── AM12_4Tastes_191105_083246_repacked.h5
+├── AM12_4Tastes_191106_085215_repacked.h5
+...
+
+
+to this dir struct:
+
+h5_dir/
+├── AM12_4Tastes_191105_083246_repacked/
+│   └── AM12_4Tastes_191105_083246_repacked.h5
+├── AM12_4Tastes_191106_085215_repacked/
+│   └── AM12_4Tastes_191106_085215_repacked.h5
+...
+
+This is so that I could batch process all of my data seqentially but automatically, 
+rather than having to babysit my computer for hours on end. 
+
+This script is fully compatible with ephys_data, a method which Abuzar Mahmood has designed as a helper for this. 
+It is of great help, but making things automatic was a royal pain. 
+
+"""
 
 def copy_and_nest_h5_files(source_dir, dest_dir):
     """
