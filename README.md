@@ -65,7 +65,7 @@ The model uses an autoencoder architecture with three main components:
   - Taste-wise mean activity overlays across neurons  
   
   ## Directory Structure Assumption:
-    The updated script assumes each `.h5` file is stored in its own directory:
+  The updated script assumes each `.h5` file is stored in its own directory:
     h5_dir/
     ├── DatasetA/
     │ └── DatasetA.h5
@@ -74,8 +74,7 @@ The model uses an autoencoder architecture with three main components:
     Only directories containing exactly one `.h5` file are processed. Others are skipped with a warning.
     Nested dirs were enforced to transparently enable serial processing of multiple datasets automatically without making modifications to `ephys_data.py`. 
   
-    If you have multiple .h5 files in a single tld, run `redist_h5.py`, which will take those files and copy them into nested sub-dirs that are appropriate for 
-    automated processing. 
+  If you have multiple .h5 files in a single tld, run `redist_h5.py`, which will take those files and copy them into nested sub-dirs that are appropriate for automated processing. 
   
   ## Modules
   - `get_data.py`: Loads and preprocesses spike train data from .h5 files. This has been deprecated and does not exist in this branch of my fork of Abuzar Mahmood's main branch 
@@ -83,7 +82,30 @@ The model uses an autoencoder architecture with three main components:
   - `train.py`: Handles model training with cross-validation
   - `run_model.py`: End-to-end pipeline for data loading, training and evaluation, extracting predicted firing rates and latents, as well as plotting all initial outputs
   - `redist_h5.py`: Helper function to create nested directory structure required for serial processing of multiple datasets.
-  - `ephys_data.py`: Comprehensive helper function written by Abuzar Mahmood that seemlessly extracts relevant data from bulky .h5 files, among other functions
+  - `ephys_data.py`: Comprehensive helper function written by Abuzar Mahmood that seemlessly extracts relevant data from bulky .h5 files, among other functions.
+      - Single modification made to ephys_data: modified get_hdf5_path to seemlessly handle multiple .h5 files in a single dir. Original class available from AbuzarMahmood/BlechClust. 
+        See:
+      ```python
+          @staticmethod
+              def get_hdf5_path(data_dir):
+                  """
+                  # Look for the hdf5 file in the directory
+                  """
+                  hdf5_path = glob.glob(
+                          os.path.join(data_dir, '**.h5'))
+                  if not len(hdf5_path) > 0:
+                      raise Exception('No HDF5 file detected')
+                  elif len(hdf5_path) > 2:
+                      selection_list = ['{}) {} \n'.format(num,os.path.basename(file)) \
+                              for num,file in enumerate(hdf5_path)]
+                      selection_string = \
+                              'Multiple HDF5 files detected, please select a number:\n{}'.\
+                                      format("".join(selection_list))
+                      file_selection = input(selection_string)
+                      return hdf5_path[int(file_selection)]
+                  else:
+                      return hdf5_path[0]
+      ```
   - `visualize.py`: Comprehensive plotting function written by Abuzar Mahmood that is extensively used in `run_model.py`
   - `blechrnn_config`: JSON-based configuration for model settings and file pathing. Useful for SSH-based modification of runtime settings when managing remotely.
   
