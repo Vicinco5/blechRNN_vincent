@@ -139,7 +139,7 @@ The model uses an autoencoder architecture with three main components:
   - `use_pca`: Whether to apply PCA preprocessing  
   - `retrain`: Whether to overwrite and retrain even if saved model exists. If model exists and `retrain = False`, will skip re-training the model. 
   
-  ## Caveats of Vincent's updates:
+  ## Caveats of Vincent's updates (end of section of Vincent's updates):
   - Reverse PCA only applied if model output dimension matches PCA input dimension  
   - Neuron-space reconstruction is approximate when PCA is applied  
   - Stimulus timing is hardcoded relative to `time_lims`; check if offset aligns with experiment  
