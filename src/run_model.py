@@ -596,6 +596,7 @@ for subdir in sorted(os.listdir(h5_dir)):
         df = pl.DataFrame(latent.reshape(-1, num_latent), schema=[f'latent_dim_{i}' for i in range(num_latent)])
         df = df.with_columns([
             pl.Series("taste", [taste_ind] * len(df)),
+            # TODO: I think that I mistakenly swapped taste and trials in the label... the data itself (seems like?) it's fine.
             pl.Series("trial", np.repeat(np.arange(num_trials), num_time)),
             pl.Series("time", np.tile(np.arange(num_time), num_trials)),
         ])
